@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
-#from gpiozero import LED
+from gpiozero import LED
 from time import sleep
 
 #Root
@@ -13,13 +13,12 @@ window_height = 300
 green_num = 0
 blue_num = 0
 red_num = 0
-#green_label_info = "START"
-#led_red = LED(18)
-#led_blue = LED(23)
-#led_green = LED(24)
+led_red = LED(18)
+led_blue = LED(23)
+led_green = LED(24)
 #led_white = LED()
 
-#Images import
+#Images import############################################################################
 green_image_on = Image.open("Bulb_Images/green100.png")   #green 
 green_test_on = ImageTk.PhotoImage(green_image_on)
 blue_image_on = Image.open("Bulb_Images/blue100.png")     #blue
@@ -38,8 +37,9 @@ LED_off_label3= tkinter.Label(image=LED_test_off)
 LED_off_label1.grid(column=2, row=0, sticky=tk.N)
 LED_off_label2.grid(column=2, row=1, sticky=tk.N)
 LED_off_label3.grid(column=2, row=2, sticky=tk.N)
+##########################################################################################
 
-#Image localisation in Label
+#Image localization in Label
 #green_image_label = tkinter.Label(image=green_test_on)       
 #green_image_label.grid(column=2, row=0, sticky=tk.N)     
 
@@ -58,13 +58,15 @@ def green():
         green_num=green_num+1
         tk.Label(root, text='ON').grid(column=1, row=0)
         green_image_label = tkinter.Label(image=green_test_on)       
-        green_image_label.grid(column=2, row=0, sticky=tk.N)     
+        green_image_label.grid(column=2, row=0, sticky=tk.N)
+        led_green.on()
         print('Green LED is on. Clicknumber: '+str(green_num))
     else:
         green_num=green_num+1
         tk.Label(root, text='OFF').grid(column=1, row=0)
         LED_off_label = tkinter.Label(image=LED_test_off)      
         LED_off_label.grid(column=2, row=0, sticky=tk.N)
+        led_green.off()
         print('Green LED is off. Clicknumber: '+str(green_num))
 def blue():
     global blue_num
@@ -72,13 +74,15 @@ def blue():
         blue_num=blue_num+1
         tk.Label(root, text='ON').grid(column=1, row=1)
         blue_image_label = tkinter.Label(image=blue_test_on)
-        blue_image_label.grid(column=2, row=1, sticky=tk.N)      
+        blue_image_label.grid(column=2, row=1, sticky=tk.N)
+        led_blue.on()
         print('Blue LED is on. Clicknumber: '+str(blue_num))
     else:
         blue_num=blue_num+1
         tk.Label(root, text='OFF').grid(column=1, row=1)
         LED_off_label = tkinter.Label(image=LED_test_off)      
         LED_off_label.grid(column=2, row=1, sticky=tk.N)      
+        led_blue.off()
         print('Blue LED is off. Clicknumber: '+str(blue_num))
 def red():
     global red_num
@@ -86,13 +90,15 @@ def red():
         red_num=red_num+1
         tk.Label(root, text='ON').grid(column=1, row=2)
         red_image_label = tkinter.Label(image=red_test_on)
-        red_image_label.grid(column=2, row=2, sticky=tk.N)      
+        red_image_label.grid(column=2, row=2, sticky=tk.N)
+        led_red.on()
         print('Red LED is on. Clicknumber: '+str(red_num))
     else:
         red_num=red_num+1
         tk.Label(root, text='OFF').grid(column=1, row=2)
         LED_off_label = tkinter.Label(image=LED_test_off)      
         LED_off_label.grid(column=2, row=2, sticky=tk.N)
+        led_red.off()
         print('Red LED is off. Clicknumber: '+str(red_num))
 
 #Screen size
